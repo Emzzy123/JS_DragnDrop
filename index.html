@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Tester</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Drag and Drop</h1>
+    <!-- <div class="box" ondrop="dDrop()" ondragover="nDrop()">
+      1
+      <div id="dragme" ondragstart="dStart()" draggable="true">
+        Drag me Please!
+      </div>
+    </div>
+    <div class="box" ondrop="dDrop()" ondragover="nDrop()">
+      2
+      <div id="dragme2" ondragstart="dStart()" draggable="true">
+        Drag me Please!
+      </div>
+    </div>
+    <hr /> -->
+    <div class="box">
+      1
+      <div id="dragme" draggable="true">Drag Me Please!</div>
+    </div>
+    <div class="box">2</div>
+    <script>
+      //   let holderItem;
+      //   function dStart() {
+      //     holderItem = event.target;
+      //   }
+      //   function nDrop() {
+      //     event.preventDefault();
+      //   }
+      //   function dDrop() {
+      //     event.preventDefault();
+      //     if (event.target.className === "box") {
+      //       event.target.appendChild(holderItem);
+      //     }
+      //   }
+      const dragme = document.querySelector("#dragme");
+      dragme.addEventListener("dragstart", (e) => {
+        dragme.style.opacity = 0.5;
+      });
+      dragme.addEventListener("dragend", (e) => {
+        dragme.style.opacity = "";
+      });
+      const boxes = document.querySelectorAll(".box");
+      boxes.forEach((box) => {
+        box.addEventListener("dragenter", (e) => {
+          e.target.classList.add("red");
+        });
+        box.addEventListener("dragover", (e) => {
+          e.preventDefault();
+        });
+        box.addEventListener("dragleave", (e) => {
+          e.target.classList.remove("red");
+        });
+        box.addEventListener("drop", (e) => {
+          e.preventDefault();
+          console.log("dropped");
+          e.target.appendChild(dragme);
+        });
+      });
+      function dragStart(e) {
+        console.log("started");
+      }
+    </script>
+  </body>
+</html>
